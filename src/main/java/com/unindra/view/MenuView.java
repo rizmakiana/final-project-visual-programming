@@ -37,6 +37,7 @@ public class MenuView extends javax.swing.JFrame {
         masterData = new javax.swing.JMenu();
         teacherData = new javax.swing.JMenuItem();
         studentData = new javax.swing.JMenuItem();
+        classData = new javax.swing.JMenuItem();
         masterTransaction = new javax.swing.JMenu();
         score = new javax.swing.JMenu();
 
@@ -58,7 +59,7 @@ public class MenuView extends javax.swing.JFrame {
         });
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // backButtonActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -104,6 +105,19 @@ public class MenuView extends javax.swing.JFrame {
         });
         masterData.add(studentData);
 
+        classData.setText("Data Kelas");
+        classData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                classDataMouseClicked(evt);
+            }
+        });
+        classData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classDataActionPerformed(evt);
+            }
+        });
+        masterData.add(classData);
+
         jMenuBar1.add(masterData);
 
         masterTransaction.setText("Transaksi");
@@ -146,6 +160,14 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_backButtonMouseClicked
+
+    private void classDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classDataMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classDataMouseClicked
+
+    private void classDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classDataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classDataActionPerformed
 
     private void studentDataActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_studentDataActionPerformed
         menuView.removeAll();
@@ -211,6 +233,7 @@ public class MenuView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JMenuItem classData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu jPopupMenu1;
