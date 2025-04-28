@@ -1,5 +1,11 @@
 -- Active: 1744735168704@@127.0.0.1@3306@final_project_visual_programming
 
+show DATABASEs;
+
+use final_project_visual_programming;
+
+show TABLEs;
+
 alter Table teachers;
 
 DESC teachers;
@@ -7,5 +13,8 @@ DESC teachers;
 
 ALTER TABLE teachers MODIFY COLUMN birth_date DATE;
 
-
+CREATE Table admin (
+    username varchar(100),
+    password VARCHAR(100)
+);
 

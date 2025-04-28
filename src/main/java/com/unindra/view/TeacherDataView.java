@@ -431,11 +431,11 @@ public class TeacherDataView extends javax.swing.JInternalFrame {
         try {
             teacherService.addData(teacher);
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+            clearForm();
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Validasi Gagal", JOptionPane.ERROR_MESSAGE);
         }
         loadData();
-        clearForm();
 
     }
 
