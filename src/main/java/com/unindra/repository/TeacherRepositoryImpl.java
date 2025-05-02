@@ -1,13 +1,13 @@
 package com.unindra.repository;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -42,9 +42,12 @@ public class TeacherRepositoryImpl implements TeacherRepository {
 			preparedStatement.setString(7, teacherRequest.getPhoneNumber());
 			preparedStatement.setString(8, teacherRequest.getEmail());
 
-			Date utilDate = teacherRequest.getBirthDate();
-			java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-			preparedStatement.setDate(4, sqlDate);
+			// Date utilDate = teacherRequest.getBirthDate();
+			// java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+			// preparedStatement.setDate(4, sqlDate);
+			LocalDate birthDate = teacherRequest.getBirthDate();
+			Date date = Date.valueOf(birthDate);
+			preparedStatement.setDate(4, date);
 
 			preparedStatement.executeUpdate();
 
@@ -71,12 +74,16 @@ public class TeacherRepositoryImpl implements TeacherRepository {
 				request.setName(resultSet.getString(1));
 				request.setId(resultSet.getString(2));
 				request.setBirthPlace(resultSet.getString(3));
-				request.setBirthDate(resultSet.getDate(4));
 				request.setGender(resultSet.getString(5));
 				request.setAddress(resultSet.getString(6));
 				request.setPhoneNumber(resultSet.getString(7));
 				request.setEmail(resultSet.getString(8));
 
+				// request.setBirthDate(resultSet.getDate(4));
+				LocalDate localDate = resultSet.getDate(4).toLocalDate();;
+				request.setBirthDate(localDate);
+
+				
 				list.add(request);
 			}
 
@@ -135,12 +142,15 @@ public class TeacherRepositoryImpl implements TeacherRepository {
 
 			statement.setString(1, request.getName());
 			statement.setString(2, request.getBirthPlace());
-			statement.setDate(3, new java.sql.Date(request.getBirthDate().getTime()));
 			statement.setString(4, request.getGender());
 			statement.setString(5, request.getAddress());
 			statement.setString(6, request.getPhoneNumber());
 			statement.setString(7, request.getEmail());
 			statement.setString(8, id);
+
+			LocalDate birthDate = request.getBirthDate();
+			Date date = java.sql.Date.valueOf(birthDate);
+			statement.setDate(3, date);
 
 			statement.executeUpdate();
 			log.info("data : {}", request);
@@ -148,5 +158,21 @@ public class TeacherRepositoryImpl implements TeacherRepository {
 			throw new RuntimeException("Gagal update guru", e);
 		}
 
+	}
+
+	@Override
+	public void deleteById(String id) {
+		String sql = "DELETE FROM teachers WHERE id = ?";
+
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(sql)) {
+
+			statement.setString(1, id);
+			statement.executeUpdate();
+			log.info("Succesfully deleted data");
+
+		} catch (SQLException e) {
+			log.error("Failed to delete {} from teachers table", id);
+		}
 	}
 }

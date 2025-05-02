@@ -13,5 +13,7 @@ public interface TeacherRepository {
 	void deleteAll();
 
 	void update(String id, TeacherRequest request);
+
+	void deleteById(String id);
 		
 }

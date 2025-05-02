@@ -1,6 +1,6 @@
 package com.unindra.model.request;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,7 @@ public class TeacherRequest {
 
     private String birthPlace;
 
-    private Date birthDate;
+    private LocalDate birthDate;
 
     private String gender;
 

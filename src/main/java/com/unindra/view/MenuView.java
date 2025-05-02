@@ -57,11 +57,6 @@ public class MenuView extends javax.swing.JFrame {
                 backButtonMouseClicked(evt);
             }
         });
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
 
         menuView.setLayer(backButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -138,7 +133,7 @@ public class MenuView extends javax.swing.JFrame {
                 .addContainerGap(638, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(menuView, javax.swing.GroupLayout.DEFAULT_SIZE, 1286, Short.MAX_VALUE))
+                .addComponent(menuView, javax.swing.GroupLayout.DEFAULT_SIZE, 1294, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

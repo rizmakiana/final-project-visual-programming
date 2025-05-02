@@ -1,5 +1,9 @@
 package com.unindra.service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 import com.unindra.model.request.TeacherRequest;
 import com.unindra.repository.TeacherRepository;
 import com.unindra.validation.TeacherValidator;
@@ -50,6 +54,20 @@ public class TeacherServiceImpl implements TeacherService{
         log.info("succes update data");
 
 
+    }
+
+    @Override
+    public void delete(String id) {
+
+        teacherRepository.deleteById(id);
+    }
+
+    @Override
+    public LocalDate toLocalDate(Date date) {
+        LocalDate localDate = date.toInstant()
+                              .atZone(ZoneId.systemDefault())
+                              .toLocalDate();
+        return localDate;
     }
     
 }
